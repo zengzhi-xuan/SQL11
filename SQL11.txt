@@ -1,0 +1,78 @@
+﻿信息系统与数据库技术练习10答题卡
+
+班级：信息管理2班     
+姓名：曾智轩     
+学号：20190307211     
+
+注：请将答案放置在序号下方。*/
+
+（一）
+1.
+USE Project
+
+
+2.
+SELECT Pid,Ename,WorkDate,BasePay
+FROM Employee JOIN EP
+ON Employee.DID=EP.Did
+
+
+3.
+SELECT Eid,Wages,Sex,Project.*
+FROM EP JOIN Project
+ON EP.DID=Project.Did
+WHERE Wages>5000
+
+
+
+4.
+SELECT Department.Did,Dname,Eid,Ename,Esex
+FROM Department JOIN Employee
+ON Department.Did=Employee.Did
+WHERE Esex='0'
+
+
+5.
+SELECT Employee.Eid,Ename,Pid,Wages
+FROM Employee JOIN SC
+ON Employee.Eid=EP.Eid
+WHERE Ename='陈燕玲'
+ORDER BY Wages DESC
+
+
+6.
+SELECT Did,Project.Eid,Ename,Employee.Pid,Pname,Wages
+FROM Project JOIN SC JOIN Employee
+ON EP.Pid=Employee.Pid
+ON Project.Eid=EP.Eid
+WHERE Did='D002' AND Pname IN ('1#','3#')
+7.
+SELECT Did,Employee.Eid,Ename,Project.Pid,Pname,Wages
+FROM Employee JOIN SC JOIN Project
+ON EP.Pid=Project.Pid
+ON Employee.Eid=EP.Eid
+WHERE Did='D002' AND Pname IN ('1#','3#')
+
+8.
+SELECT Employee.Eid,Ename,EP.Pid,Wages
+FROM Employee LEFT JOIN EP
+ON Employee.Sid=EP.Eid
+
+9.
+SELECT EP.Eid,Wages,Project.*
+FROM EP RIGHT JOIN Project
+ON EP.Cid=Project.Cid
+
+10.
+SELECT Project.Eid,Ename,EP.Wages,Employee.*
+FROM Project FULL JOIN EP FULL JOIN Employee
+ON EP.Cid=Employee.Cid
+ON Project.Eid=EP.Eid
+
+11.
+在Department、Student、SC、Course表查询院系号(Did)、院系名(Dname)、学号(Sid)、姓名(Sname)、课程号(Cid)、课程名(Cname)和成绩(SCscore)
+SELECT Department.Did,Dname,Employee.Eid,Ename,Project.Cid,Pname,Wages
+FROM Department JOIN Employee JOIN EP JOIN Project
+ON EP.Pid=Project.Pid
+ON Employee.Eid=EP.Eid
+ON Department.Did=Employee.Did
